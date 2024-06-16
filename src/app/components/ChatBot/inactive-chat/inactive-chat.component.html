@@ -1,0 +1,30 @@
+<section class="flex flex-col w-full h-full overflow-y-auto px-4 bg-neutral-800">
+
+    @for (item of inactiveChat; track item.id) {
+    <div class="flex flex-row items-center px-3 py-2 rounded-xl hover:bg-white/5">
+
+        <div class="w-5/6 text-sm text-white">
+            <p>{{ item.message.substring(0, 15) }}</p>
+        </div>
+
+        <div class="w-1/6 group">
+            <button (click)="item.showMenuDelete = !item.showMenuDelete" class="w-8 p-2 rounded-lg" type="button">
+                <app-icons name="dotsHorizontal" class="rotate-90" />
+            </button>
+        </div>
+
+    </div>
+    @if(item.showMenuDelete){
+    <span class="relative translate-x-20 w-fit bg-neutral-300 rounded-full group">
+        <ul class="rounded-full hover:bg-neutral-50">
+            <li class="cursor-pointer">
+                <a (click)="restoreItem(item)" class="inline-flex gap-x-2 px-3 py-2 text-xs items-center">
+                    <app-icons name="restore" /> Restaurar
+                </a>
+            </li>
+        </ul>
+    </span>
+    }
+    }
+
+</section>

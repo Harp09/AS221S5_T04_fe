@@ -1,0 +1,52 @@
+<div class="w-4/6 h-full flex flex-col items-center m-auto">
+
+    @for (item of chat; track item.id) {
+
+    <div class="w-full h-auto flex flex-col gap-y-2">
+
+        <section class="flex justify-end">
+            <button (click)="item.showMenuDelete= !item.showMenuDelete" class="w-8 p-2 rounded-lg" type="button">
+                <app-icons name="dotsVertical" />
+            </button>
+
+            @if(item.showMenuDelete){
+            <span class="w-fit bg-neutral-300 rounded-full group">
+                <ul class="rounded-full hover:bg-neutral-50">
+                    <li class="cursor-pointer">
+                        <a (click)="deleteItem(item.id)" class="inline-flex gap-x-1 px-3 py-2 text-xs items-center">
+                            <app-icons name="delete" /> Eliminar
+                        </a>
+                    </li>
+                </ul>
+            </span>
+            }
+        </section>
+
+
+        <section class="flex flex-col items-end">
+            <div class="w-3/6 h-full rounded-2xl text-gray-300">
+                <textarea [(ngModel)]="item.message" appTextareaAutoresize
+                    (click)="item.showMenuEdit= !item.showMenuEdit"
+                    class="w-full text-pretty px-4 py-2 bg-white/5 resize-none rounded-2xl focus:outline-none focus:ring-teal-500 focus:ring-2">
+                            </textarea>
+
+                @if (item.showMenuEdit) {
+                <div class="w-full inline-flex justify-end gap-x-2">
+                    <button (click)="updateItem(item)"
+                        class="bg-white px-4 py-2 rounded-3xl text-sm text-gray-600 hover:bg-white/85">Enviar</button>
+                </div>
+                }
+
+            </div>
+        </section>
+
+        <section class="flex flex-col items-start">
+            <div class="w-4/6 h-full px-4 py-3 bg-white/10 border-none rounded-lg">
+                <span class="font-bold text-teal-300">Bot:</span>
+                <span class="text-gray-200 ml-2" [innerHTML]="formatResponse(item.response)"></span>
+            </div>
+        </section>
+
+    </div>
+    }
+</div>

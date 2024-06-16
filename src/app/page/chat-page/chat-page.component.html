@@ -1,0 +1,21 @@
+<section class="flex flex-row w-full h-full gap-x-2">
+
+    <section class="w-1/6">
+        <app-inactive-chat [inactiveChat]="inactiveChat" (restoreItemEvent)="onDataRefresh()"/>
+    </section>
+
+    <section class="w-5/6">
+        <div class="w-full h-full flex flex-col items-center gap-y-2">
+
+            <div class="w-full h-5/6 overflow-y-auto">
+                <app-show-chat [chat]="chat" (deleteItemEvent)="onDataRefresh()" />
+            </div>
+
+            <div class="w-3/4 h-1/6">
+                <app-chat-form (dataSavedEvent)="onDataRefresh()" />
+            </div>
+
+        </div>
+    </section>
+
+</section>
