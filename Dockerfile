@@ -1,4 +1,4 @@
-FROM node:16
+FROM node:18
 
 RUN mkdir -p /app
 
@@ -6,7 +6,7 @@ WORKDIR /app
 
 COPY package*.json /app
 
-RUN npm install
+RUN npm install --legacy-peer-deps
 
 COPY . /app
 
